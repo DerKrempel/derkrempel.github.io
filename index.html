@@ -37,9 +37,9 @@
         });
     }
 
-    function updateWidget(widgetId) {
-        let dice = miro.board.widgets.get({id: widgetId})
-        dice.text = getRandomInt(6)
+    async function updateWidget(widgetId) {
+        let dice = await miro.board.widgets.get({id: widgetId})
+        dice.text = '' + getRandomInt(6)
 
         miro.board.widgets.update(dice)
     }
