@@ -22,13 +22,16 @@
         let diceRollerFrames = allFrames.filter(frame => frame.title == 'Dice Roller')
 
         if (diceRollerFrames.length <= 0) {
-            alert('To roll the dices, please create a FRAME with the name "Dice Roller!"')
+            miro.showNotification('To roll the dices, please create a FRAME with the name "Dice Roller"')
+
             return
         }
 
         diceIds = diceRollerFrames.flatMap(diceRoller => diceRoller.childrenIds)
 
         if (diceIds.length <= 0) {
+            miro.showNotification('The "Dice Roller" frame has no content!')
+
             return;
         }
 
