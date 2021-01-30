@@ -40,12 +40,12 @@
         if (diceIds.length <= 0) {
             miro.showNotification('The "Dice Roller" frame has no content!')
 
-            return;
+            return
         }
 
         diceIds.forEach(diceId => {
             updateWidget(diceId)
-        });
+        })
     }
 
     async function updateWidget(widgetId) {
