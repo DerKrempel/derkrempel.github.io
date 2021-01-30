@@ -48,9 +48,9 @@
         });
     }
 
-    async function updateWidget(widgetIds) {
-        const diceSet = await miro.board.widgets.get({id: widgetIds})
-        const filteredDiceSet = diceSet.filter(dice => diceColors.toUpperCase().include(dice.style.backgroundColor.toUpperCase()))
+    async function updateWidget(widgetId) {
+        const diceWidget = await miro.board.widgets.get({id: widgetId})
+        const filteredDiceSet = diceWidget.filter(dice => diceColors.include(dice.style.backgroundColor.toUpperCase()))
 
         filteredDiceSet.forEach(dice => {
             dice.text = '' + getRandomInt(6)
