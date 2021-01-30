@@ -17,6 +17,13 @@
       })
     })
 
+    const analysisDiceColor = '#EA5066'
+    const developmentDiceColor = '#506AEA'
+    const testingDiceColor = '#50EA7B'
+    const additionalDiceColor = '#F49CC5'
+
+    const diceColors = [analysisDiceColor, developmentDiceColor, testingDiceColor, additionalDiceColor]
+
     async function rollDices() {
         let allFrames = await miro.board.widgets.get({type: 'frame'})
         let diceRollerFrames = allFrames.filter(frame => frame.title == 'Dice Roller')
@@ -29,6 +36,7 @@
 
         diceIds = diceRollerFrames.flatMap(diceRoller => diceRoller.childrenIds)
 
+
         if (diceIds.length <= 0) {
             miro.showNotification('The "Dice Roller" frame has no content!')
 
@@ -40,10 +48,11 @@
         });
     }
 
-    async function updateWidget(widgetId) {
-        const diceSet = await miro.board.widgets.get({id: widgetId})
+    async function updateWidget(widgetIds) {
+        const diceSet = await miro.board.widgets.get({id: widgetIds})
+        const filteredDiceSet = diceSet.filter(dice => diceColors.toUpperCase().include(dice.style.backgroundColor.toUpperCase()))
 
-        diceSet.forEach(dice => {
+        filteredDiceSet.forEach(dice => {
             dice.text = '' + getRandomInt(6)
         })
 
