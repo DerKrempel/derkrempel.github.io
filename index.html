@@ -56,7 +56,9 @@
             dice.text = '' + getRandomInt(6)
         })
 
-        miro.board.widgets.update(diceSet)
+        if (filteredDiceSet.length > 0) {
+            miro.board.widgets.update(filteredDiceSet)
+        }
     }
 
     function getRandomInt(max) {
